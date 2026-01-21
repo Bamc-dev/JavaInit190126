@@ -1,0 +1,40 @@
+package fr.dawan.poo.association;
+
+public class Client extends Utilisateur {
+
+    private String numClient;
+    private boolean subscribe;
+
+    public Client() {
+        super();
+    }
+
+    public Client(String nom, String prenom, int age, String numClient, boolean subscribe, Adresse adresse) {
+        super(nom, prenom, age, adresse);
+        this.numClient = numClient;
+        this.subscribe = subscribe;
+    }
+
+    public String getNumClient() {
+        return numClient;
+    }
+
+    public void setNumClient(String numClient) {
+        this.numClient = numClient;
+    }
+
+    public boolean isSubscribe() {
+        return subscribe;
+    }
+
+    public void setSubscribe(boolean subscribe) {
+        this.subscribe = subscribe;
+    }
+
+    @Override
+    public void afficherInformation() {
+        super.afficherInformation();
+        System.out.println("Numero du client : " + this.numClient);
+        System.out.println("Subscribe : " + (this.subscribe ? "Oui" : "Non"));
+    }
+}
