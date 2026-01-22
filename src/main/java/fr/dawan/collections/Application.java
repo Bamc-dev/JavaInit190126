@@ -92,5 +92,19 @@ public class Application {
         mapUsers.put(user4, 1004);
         mapUsers.put(user5, 1005);
         mapUsers.put(user6, 1006);
+
+        System.out.println("11 . Parcourir Map avec Streams et valeur > 1003");
+        mapUsers.entrySet().stream()
+                .filter(entry -> entry.getValue() > 1003)
+                .forEach(entry -> System.out.println(entry.getKey() + " - " + entry.getValue()));
+
+        System.out.println("12. Extraire les clés de la Map");
+        mapUsers.keySet().forEach(System.out::println);
+
+        System.out.println("13. Trouver la clé associée à une valeur spécifique");
+        mapUsers.entrySet().stream()
+                .filter(entry -> entry.getValue() == 1005)
+                .map(Map.Entry::getKey)
+                .forEach(System.out::println);
     }
 }
