@@ -2,6 +2,8 @@ package fr.dawan.exosFilRouge.npc;
 
 import fr.dawan.exosFilRouge.NPC;
 import fr.dawan.exosFilRouge.Player;
+import fr.dawan.exosFilRouge.exceptions.NegativHealthException;
+import fr.dawan.exosFilRouge.exceptions.UnrespectedMaxHealthException;
 
 public class Monster extends NPC {
 
@@ -15,7 +17,11 @@ public class Monster extends NPC {
     public void attack(Player player)
     {
         System.out.println(this.getNom() + " attacks " + player.getNom() + " for " + this.damage + " damage!");
-        player.takeDamage(this.damage);
+        try {
+            player.takeDamage(this.damage);
+        } catch (NegativHealthException | UnrespectedMaxHealthException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

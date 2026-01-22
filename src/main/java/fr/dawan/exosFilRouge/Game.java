@@ -1,5 +1,8 @@
 package fr.dawan.exosFilRouge;
 
+import fr.dawan.exosFilRouge.exceptions.InvalidMovementException;
+import fr.dawan.exosFilRouge.exceptions.NegativHealthException;
+import fr.dawan.exosFilRouge.exceptions.UnrespectedMaxHealthException;
 import fr.dawan.exosFilRouge.npc.Monster;
 import fr.dawan.exosFilRouge.npc.Seller;
 
@@ -7,7 +10,12 @@ import java.util.List;
 
 public class Game {
     public static void main(String[] args) {
-        Player player = new Player("Hero", 0, 0, 100);
+        Player player = null;
+        try {
+            player = new Player("Hero", 0, 0, 1000);
+        } catch (NegativHealthException | UnrespectedMaxHealthException e) {
+            System.out.println(e.getMessage());
+        }
         NPC seller = new Seller("Goblin", 5, 5, List.of("Epee", "Bouclier", "Arc"));
         Monster monster = new Monster("Orc", -3, 2, 10);
         Scene scene = new Scene(List.of(player, seller, monster));
@@ -20,7 +28,11 @@ public class Game {
 
 
         System.out.println("\n--- Déplacement du joueur ---");
-        player.move(2, 3);
+        try {
+            player.move(2, 3);
+        } catch (InvalidMovementException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Player movement X : "+player.getX()+ ", Y : "+player.getY());
         player.update();
 

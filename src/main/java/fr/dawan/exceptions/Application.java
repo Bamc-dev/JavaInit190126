@@ -27,7 +27,7 @@ public class Application {
                  VirementMemeCompteException e) {
             System.out.println(e.getMessage());
         }finally {
-            System.out.println("Retour a l'acceuil");
+            System.out.println("Retour a l'accueil");
         }
     }
 }
